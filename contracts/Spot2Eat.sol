@@ -1,32 +1,23 @@
 pragma solidity ^0.4.15;
 
 import "./spot/Spot.sol";
+import "./spot/SpotEvents.sol";
 
-contract Spot2Eat {
+contract Spot2Eat is SpotEvents {
 
     address public owner;
 
     mapping(address => Spot[]) public spots;
 
-    event Spots(address _owner, string _description);
+    address public spotLibrary;
 
-    function Spot2Eat() {
+    function Spot2Eat(address _spotLibrary) {
         owner = msg.sender;
+        spotLibrary = _spotLibrary;
     }
 
-    function addSpot(
-        string _description,
-        uint256 _lat,
-        uint256 _lng,
-        uint256 _alt)
-        public
-        returns(bool)
-    {
-        Spot newSpot = new Spot(_description, _lat, _lng, _alt);
-        Spot[] userSpots = spots[msg.sender];
-        userSpots.push(newSpot);        
-        spots[msg.sender] = userSpots;
-        Spots(msg.sender, _description);
-        return true;
+    function () payable {
+        require(spotLibrary.delegatecall(msg.data));
     }
+
 }
