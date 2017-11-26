@@ -1,0 +1,38 @@
+{
+  "name": "spot2eat-contracts",
+  "version": "1.0.0",
+  "description": "Ethereum smart contracts to manage your favorite spots 2 eat :)",
+  "main": "truffle.js",
+  "scripts": {
+    "test": "scripts/test.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisfidelis/spot2eat-contracts.git"
+  },
+  "keywords": [
+    "solidity",
+    "ethereum",
+    "blockchain",
+    "eat"
+  ],
+  "dependencies": {
+    "bip39": "^2.4.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-bignumber": "^2.0.2",
+    "ethereumjs-testrpc": "^6.0.1",
+    "ethereumjs-wallet": "^0.6.0",
+    "python": "0.0.4",
+    "truffle": "^3.4.11",
+    "truffle-hdwallet-provider": "0.0.3",
+    "web3": "^0.18.4",
+    "web3-provider-engine": "^8.6.1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/luisfidelis/spot2eat-contracts/issues"
+  },
+  "homepage": "https://github.com/luisfidelis/spot2eat-contracts#readme"
+}
