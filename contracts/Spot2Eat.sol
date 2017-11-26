@@ -6,7 +6,7 @@ contract Spot2Eat {
 
     address public owner;
 
-    mapping(address => Spot) public spots;
+    mapping(address => Spot[]) public spots;
 
     function Spot2Eat() {
         owner = msg.sender;
