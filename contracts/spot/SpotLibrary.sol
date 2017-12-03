@@ -10,10 +10,6 @@ contract SpotLibrary is SpotEvents {
 
     mapping(address => Spot[]) public spots;
 
-    function Spotlibrary() {
-        owner = msg.sender;
-    }
-
     function addSpot(
         string _description,
         uint256 _lat,
@@ -23,12 +19,11 @@ contract SpotLibrary is SpotEvents {
         returns(bool)
     {
         Spot newSpot = new Spot(_description, _lat, _lng, _alt);
-        Spot[] userSpots = spots[msg.sender];
+        Spot[] storage userSpots = spots[msg.sender];
         userSpots.push(newSpot);        
         spots[msg.sender] = userSpots;
-        Spots(msg.sender, _description);
+        Spots(msg.sender, _description, newSpot);
         return true;
     }
-
 
 }
