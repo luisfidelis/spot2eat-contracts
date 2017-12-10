@@ -18,9 +18,9 @@ contract('Spot2Eat', accounts => {
 
     before( async () => {
         company = accounts[0];
-        user = accounts[1];
-        const library = await SpotLibrary.new({ from: company });
-        protocol = await Spot2Eat.new(library.address, { from: company});
+        user = accounts[0];
+        //const library = await SpotLibrary.new({ from: company });
+        protocol = await Spot2Eat.deployed();
     })
    
     describe('Manage Spots', () => {
@@ -42,7 +42,14 @@ contract('Spot2Eat', accounts => {
             assert.equal(args._owner, user, "The current user must be the spot's owner");
             spotAddress = args._spotAddress;
         })
-         
+    })
+
+    describe("Randomize a Spot", () => {
+        it("should generate a random user's spot", async () => {
+           const {logs} = await SpotLibrary.at(protocol.address).getRandomSpot(
+                {from: user }
+            );
+        })
     })
     
 })

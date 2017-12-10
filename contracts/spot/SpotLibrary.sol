@@ -3,12 +3,15 @@ pragma solidity ^0.4.15;
 
 import "./Spot.sol";
 import "./SpotEvents.sol";
+import "eth-random/contracts/Random.sol";
 
 contract SpotLibrary is SpotEvents {
 
     address public owner;
 
     mapping(address => Spot[]) public spots;
+
+    Random api;
 
     function addSpot(
         string _description,
@@ -24,6 +27,17 @@ contract SpotLibrary is SpotEvents {
         spots[msg.sender] = userSpots;
         Spots(msg.sender, _description, newSpot);
         return true;
+    }
+
+    function getRandomSpot()
+        public
+        returns(Spot)
+    {
+        Spot[] userSpots = spots[msg.sender];
+        assert(userSpots.length != 0);
+        uint256 range = userSpots.length;
+        uint256 spotIndex = api.random(range);
+        return userSpots[spotIndex];
     }
 
 }
